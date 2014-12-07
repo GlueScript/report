@@ -34,5 +34,12 @@ describe('Report', function() {
             });
         });
 
+        it('should respond with an empty array for non-object input', function() {
+            var value = 'a string';
+            filter.report(value, function(result) {
+                assert.equal(0, result.length);
+            });
+        });
+
     });
 });
