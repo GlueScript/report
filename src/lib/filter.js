@@ -9,7 +9,7 @@ exports.report = function(input, callback) {
     if (!(input instanceof Array)) {
         input = [input];
     } else if (0 == input.length) {
-        return output;
+        callback(output);
     }
 
     // use the first item in input as the table headers

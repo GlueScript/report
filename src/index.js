@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
     res.json({description : "Generate tabular reports from arrays of json objects"});
 });
 
-// expects a single uri in the post body
+// expects a json array in req.body
 app.post('/', function(req, res) {
     console.log(req.body);
     filter.report(req.body, function(data) {
