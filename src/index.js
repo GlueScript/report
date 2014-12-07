@@ -15,7 +15,7 @@ var logger = new winston.Logger({
   exitOnError: false
 });
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '1024kb'}));
 
 app.get('/', function (req, res) {
     res.json({description : "Generate tabular reports from arrays of json objects"});
