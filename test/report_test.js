@@ -26,5 +26,13 @@ describe('Report', function() {
                 assert.equal('44', result[1][1]);
             });
         });
+
+        it('should respond with an empty array for empty input', function() {
+            var value = [];
+            filter.report(value, function(result) {
+                assert.equal(0, result.length);
+            });
+        });
+
     });
 });

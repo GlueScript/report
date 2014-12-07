@@ -8,6 +8,8 @@ exports.report = function(input, callback) {
     // ensure that input is an array, if not treat it as a single element array
     if (!(input instanceof Array)) {
         input = [input];
+    } else if (0 == input.length) {
+        return output;
     }
 
     // use the first item in input as the table headers
