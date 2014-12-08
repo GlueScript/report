@@ -23,8 +23,10 @@ app.get('/', function (req, res) {
 
 // expects a json array in req.body
 app.post('/', function(req, res) {
+    // use req.param('format') to pick output
     console.log(req.body);
     filter.report(req.body, function(data) {
+        // take data from report function and format it into csv, html table, md table, etc
         res.json(data);
     });
 });
