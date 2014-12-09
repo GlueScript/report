@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "description": "Generates tabular reports from arrays of json objects",
   "main": "index.js",
-  "respository": "git@github.com:timothy-r/report.git",
+  "repository": {
+    "url" : "git@github.com:timothy-r/report.git",
+    "type": "git"
+  },
   "scripts": {
     "test": "node_modules/.bin/mocha --recursive ../test"
   },
