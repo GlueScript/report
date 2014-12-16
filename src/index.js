@@ -1,6 +1,7 @@
 var app = require('express')(),
     winston = require('winston'),
     bodyParser = require('body-parser'),
+    csv = require('express-csv'),
     filter = require('./lib/filter');
 
 /*
@@ -25,9 +26,15 @@ app.get('/', function (req, res) {
 app.post('/', function(req, res) {
     // use Accept header to control output format
     console.log(req.body);
+    var accept = req.headers['accept'];
     filter.report(req.body, function(data) {
         // take data from report function and format it into csv, html table, md table, etc
-        res.json(data);
+        if (accept == 'text/csv'){
+            res.csv(data);
+        } else if (accept == 'text/html'){
+        } else {
+            res.json(data);
+        }
     });
 });
 
