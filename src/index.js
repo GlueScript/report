@@ -1,7 +1,6 @@
 var app = require('express')(),
     winston = require('winston'),
     bodyParser = require('body-parser'),
-    csv = require('express-csv'),
     filter = require('./lib/filter');
 
 /*
@@ -16,25 +15,22 @@ var logger = new winston.Logger({
   exitOnError: false
 });
 
+// expects a json array in req.body
 app.use(bodyParser.json({limit: '1024kb'}));
 
 app.get('/', function (req, res) {
-    res.json({description : "Generate tabular reports from arrays of json objects"});
+    res.json({
+        name : "Report",
+        description : "Generate tabular reports from arrays of json objects"
+    });
 });
 
-// expects a json array in req.body
 app.post('/', function(req, res) {
     // use Accept header to control output format
     console.log(req.body);
     var accept = req.headers['accept'];
     filter.report(req.body, function(data) {
-        // take data from report function and format it into csv, html table, md table, etc
-        if (accept == 'text/csv'){
-            res.csv(data);
-        } else if (accept == 'text/html'){
-        } else {
-            res.json(data);
-        }
+        res.json(data);
     });
 });
 
